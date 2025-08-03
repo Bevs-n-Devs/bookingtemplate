@@ -13,7 +13,7 @@ func StartServer() {
 	logs.Logs(info, "Starting application server...")
 	logs.Logs(1, "Loading environment variables...")
 
-	err := env.LoadEnv("env/.env")
+	err := env.LoadEnv(".env")
 	if err != nil {
 		logs.Logs(3, "failed to load environment variables: "+err.Error())
 	}
