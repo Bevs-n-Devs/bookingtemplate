@@ -26,7 +26,7 @@ func StartServer() {
 	http.HandleFunc("/", HelloWorld)
 
 	logs.Logs(1, "Retreiving port from environment variables...")
-	httpServerPort := os.Getenv("PORT")
+	httpServerPort := os.Getenv("APP_PORT")
 
 	// start server on local machine
 	if httpServerPort == "" {
