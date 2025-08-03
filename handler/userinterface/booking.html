@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+</head>
+<body>
+    <h1>Book A Service</h1>
+
+    <form action="/confirmbooking" method="post">
+        <p>Please enter your email</p>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        <p>Please select a service</p>
+        <select name="serviceName" id="serviceName" required>
+            <option value="" disabled>Select a service</option>
+            <option value="servcie 1">Service 1</option>
+            <option value="service 2">Service 2</option>
+        </select>
+        <p>Please select the duration</p>
+        <select name="duration" id="duration" required>
+            <option value="" disabled>Select a duration</option>
+            <option value="30mins">30 minutes</option>
+            <option value="45mins">45 minutes</option>
+            <option value="60mins">60 minutes</option>
+        </select>
+        <p>Select a date</p>
+        <input type="date" id="date" name="date" required>
+        <p>Select a time</p>
+        <select name="serviceTime" id="serviceTime" required>
+            <option value="" disabled></option>
+            <option value="8am">08:00</option>
+            <option value="9am">09:00</option>
+            <option value="10am">10:00</option>
+            <option value="11am">11:00</option>
+            <option value="12pm">12:00</option>
+            <option value="1pm">13:00</option>
+            <option value="2pm">14:00</option>
+            <option value="3pm">15:00</option>
+            <option value="4pm">16:00</option>
+            <option value="5pm">17:00</option>
+            <option value="6pm">18:00</option>
+            <option value="7pm">19:00</option>
+            <option value="8pm">20:00</option>
+            <option value="9pm">21:00</option>
+        </select>
+
+        <button type="submit">Reserve Booking</button>
+    </form>
+
+</body>
+</html>
