@@ -10,9 +10,11 @@ var (
 )
 
 const (
-	info   = "INFO: "
-	warn   = "WARN: "
-	logErr = "ERROR: "
+	info     = "INFO: "
+	warn     = "WARN: "
+	logErr   = "ERROR: "
+	database = "DATABASE: "
+	dbError  = "DATABASE ERROR: "
 )
 
 func ProcessLogs() {
@@ -31,6 +33,10 @@ func Logs(logType int, message string) {
 		loggedMessage = warn + message
 	case 3:
 		loggedMessage = logErr + message
+	case 4:
+		loggedMessage = database + message
+	case 5:
+		loggedMessage = dbError + message
 	default:
 		loggedMessage = fmt.Sprintf("UNKNOWN LOG TYPE: %d, MESSAGE: %s", logType, message)
 	}

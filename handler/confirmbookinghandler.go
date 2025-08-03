@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
+	"github.com/Bevs-n-Devs/bookingtemplate/database/writeDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 )
 
@@ -45,9 +47,21 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// check if form data [service, duration, date, time] already exsits in the database
+	exists := readDB.CheckBookingConfirmationSQL(userEmail, service, duration, date, serviceTime, deposit)
 
-	// add the booking to the database if it does not exist
+	if !exists {
+		// add the booking to the database if it does not exist
+		err := writeDB.CreateBookingConfirmationSQL(userEmail, service, duration, date, serviceTime, deposit)
+		if err != nil {
+			logs.Logs(logErr, "Could not create booking: "+err.Error())
+			http.RedirectHandler("/", http.StatusSeeOther)
+			return
+		}
+	}
 
-	logs.Logs(1, fmt.Sprintf("{\"email\": \"%s\", \"service\": \"%s\", \"duration\": \"%s\", \"date\": \"%s\", \"time\": \"%s\", \"deposit\": %d}", userEmail, service, duration, date, serviceTime, deposit))
-	http.RedirectHandler("/", http.StatusSeeOther)
+	if exists {
+		logs.Logs(warn, fmt.Sprintf("Booking already exists in database {\"email\": \"%s\", \"service\": \"%s\", \"duration\": \"%s\", \"date\": \"%s\", \"time\": \"%s\", \"deposit\": %d}", userEmail, service, duration, date, serviceTime, deposit))
+		http.RedirectHandler("/", http.StatusSeeOther)
+		return
+	}
 }
