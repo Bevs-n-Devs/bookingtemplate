@@ -56,6 +56,7 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 
 	// if the booking does not exist in the database
 	if !verified {
+		
 		err := writeDB.CreateBookingConfirmationSQL(userEmail, serviceType, serviceDuration, bookingDate, bookingTime, deposit)
 		if err != nil {
 			logs.Logs(logErr, "Could not create booking: "+err.Error())
