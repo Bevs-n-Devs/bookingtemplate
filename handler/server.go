@@ -26,6 +26,13 @@ func StartServer() {
 	http.HandleFunc("/", HelloWorld)
 	http.HandleFunc("/booking", BookingHandler)
 	http.HandleFunc("/confirmbooking", ConfiormBookingHandler)
+	// login page
+	// create new account page
+	// stripe payment page
+	// manage booking page
+	// admin login
+	// add new service
+
 
 	logs.Logs(1, "Retreiving port from environment variables...")
 	httpServerPort := os.Getenv("APP_PORT")

@@ -23,16 +23,16 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Extract form data
+	// Extract form data username, bookingDate, bookingTime, serviceType, serviceDuration
 	var deposit int
-	userEmail := r.FormValue("email")
-	service := r.FormValue("serviceName")
-	duration := r.FormValue("duration")
-	date := r.FormValue("date")
-	serviceTime := r.FormValue("serviceTime")
+	userEmail := r.FormValue("username")
+	serviceType := r.FormValue("serviceType")
+	serviceDuration := r.FormValue("serviceDuration")
+	bookingDate := r.FormValue("bookingDate")
+	bookingTime := r.FormValue("bookingTime")
 
 	// calculate the deposit
-	switch duration {
+	switch serviceDuration {
 	case "30mins":
 		deposit = 10
 	case "45mins":
@@ -41,26 +41,32 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 		deposit = 20
 	default:
 		deposit = 0
-		logs.Logs(logErr, "Invalid duration selected: "+duration)
+		logs.Logs(logErr, "Invalid duration selected: "+serviceDuration)
 		http.Error(w, "Invalid duration selected", http.StatusBadRequest)
 		return
 	}
 
 	// check if form data [service, duration, date, time] already exsits in the database
-	exists := readDB.CheckBookingConfirmationSQL(userEmail, service, duration, date, serviceTime, deposit)
+	verified, err := readDB.VerifyBookingSQL(userEmail, serviceType, serviceDuration, bookingDate, bookingTime)
+	if err != nil {
+		logs.Logs(logErr, "Could not verify booking: "+err.Error())
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 
-	if !exists {
-		// add the booking to the database if it does not exist
-		err := writeDB.CreateBookingConfirmationSQL(userEmail, service, duration, date, serviceTime, deposit)
+	// if the booking does not exist in the database
+	if !verified {
+		err := writeDB.CreateBookingConfirmationSQL(userEmail, serviceType, serviceDuration, bookingDate, bookingTime, deposit)
 		if err != nil {
 			logs.Logs(logErr, "Could not create booking: "+err.Error())
-			http.RedirectHandler("/", http.StatusSeeOther)
+			http.RedirectHandler("/", http.StatusSeeOther) // change to login page OR direct to payment page
 			return
 		}
 	}
 
-	if exists {
-		logs.Logs(warn, fmt.Sprintf("Booking already exists in database {\"email\": \"%s\", \"service\": \"%s\", \"duration\": \"%s\", \"date\": \"%s\", \"time\": \"%s\", \"deposit\": %d}", userEmail, service, duration, date, serviceTime, deposit))
+	// if booking already exists in the database
+	if verified {
+		logs.Logs(warn, fmt.Sprintf("Booking already exists in database {\"email\": \"%s\", \"service\": \"%s\", \"duration\": \"%s\", \"date\": \"%s\", \"time\": \"%s\", \"deposit\": %d}", userEmail, serviceType, serviceDuration, bookingDate, bookingTime, deposit))
 		http.RedirectHandler("/", http.StatusSeeOther)
 		return
 	}

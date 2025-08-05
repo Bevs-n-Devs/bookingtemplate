@@ -10,7 +10,7 @@
 
     <form action="/confirmbooking" method="post">
         <p>Please enter your email</p>
-        <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        <input type="email" name="username" id="username" placeholder="Enter your email" required>
         <p>Please select a service</p>
         <select name="serviceName" id="serviceName" required>
             <option value="" disabled>Select a service</option>
@@ -18,16 +18,16 @@
             <option value="service 2">Service 2</option>
         </select>
         <p>Please select the duration</p>
-        <select name="duration" id="duration" required>
+        <select name="serviceDuration" id="serviceDuration" required>
             <option value="" disabled>Select a duration</option>
             <option value="30mins">30 minutes</option>
             <option value="45mins">45 minutes</option>
             <option value="60mins">60 minutes</option>
         </select>
         <p>Select a date</p>
-        <input type="date" id="date" name="date" required>
+        <input type="date" id="bookingDate" name="bookingDate" required>
         <p>Select a time</p>
-        <select name="serviceTime" id="serviceTime" required>
+        <select name="bookingTime" id="bookingTime" required>
             <option value="" disabled></option>
             <option value="8am">08:00</option>
             <option value="9am">09:00</option>
