@@ -1,9 +1,16 @@
 package readDB
 
+import "database/sql"
+
 const (
+	info  = 1
 	warn  = 2
 	logDB = 4
 	dbErr = 5
+)
+
+var (
+	db *sql.DB
 )
 
 type GetBookingConfirmation struct {

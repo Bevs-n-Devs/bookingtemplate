@@ -6,7 +6,7 @@ func Service1RemainingBalance30Mins() int {
 }
 
 func Service1RemainingBalance45Mins() int {
-	result := servcie1Deposit45Mins - srvice1FullAmount45Mins
+	result := servcie1Deposit45Mins - service1FullAmount45Mins
 	return result
 }
 

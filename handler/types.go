@@ -15,4 +15,5 @@ const (
 var (
 	Templates   *template.Template
 	staticFiles = http.FileServer(http.Dir("./handler/userinterface/static/"))
+	depositStatus, remainingBalanceStatus string = "pending", "pending"
 )

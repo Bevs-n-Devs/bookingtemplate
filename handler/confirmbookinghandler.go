@@ -56,7 +56,10 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 
 	// if the booking does not exist in the database
 	if !verified {
-		
+		// get the service full payment price from the database via serviceType and serviceDuration
+		// write insert db using form data and also function above, including pending variables  (depositStatus, remainingBalanceStatus) 
+		// 
+
 		err := writeDB.CreateBookingConfirmationSQL(userEmail, serviceType, serviceDuration, bookingDate, bookingTime, deposit)
 		if err != nil {
 			logs.Logs(logErr, "Could not create booking: "+err.Error())
