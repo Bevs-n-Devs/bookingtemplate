@@ -28,18 +28,18 @@ func ConnectDB() error {
 	}
 
 	logs.Logs(logDB, "Connecting to database...")
-	Db, err = sql.Open("postgres", databaseURL) // open db connection from global db variable
+	db, err = sql.Open("postgres", databaseURL) // open db connection from global db variable
 	if err != nil {
 		logs.Logs(dbErr, fmt.Sprintf("Unable to open database connection: %s", err.Error()))
 		return err
 	}
 	// verify connection
 	logs.Logs(logDB, "Verifying database connection...")
-	if Db == nil {
+	if db == nil {
 		logs.Logs(dbErr, "Database connection is nil!")
 		return errors.New("database connection not establioshed")
 	}
-	err = Db.Ping()
+	err = db.Ping()
 	if err != nil {
 		logs.Logs(dbErr, fmt.Sprintf("Cannot connect to database: %s", err.Error()))
 		return err
@@ -49,8 +49,8 @@ func ConnectDB() error {
 }
 
 func CloseDB() error {
-	if Db != nil {
-		Db.Close()
+	if db != nil {
+		db.Close()
 		logs.Logs(logDB, "Database connection closed")
 		return nil
 	}

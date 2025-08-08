@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
+	"github.com/Bevs-n-Devs/bookingtemplate/database/writeDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 	"github.com/Bevs-n-Devs/bookingtemplate/payments"
 )
@@ -24,7 +25,6 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Extract form data username, bookingDate, bookingTime, serviceType, serviceDuration
-	var deposit int
 	userEmail := r.FormValue("username")
 	service := r.FormValue("serviceType")
 	serviceDuration := r.FormValue("serviceDuration")
@@ -58,5 +58,14 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	remainingBalance := payments.CalculateRemainingBalance(serviceCost, serviceDeposit)
 
 	// create a booking confirmation
+	err = writeDB.CreateBookingConfirmationSQL(userEmail, bookingDate, bookingTime, serviceType, serviceDeposit, remainingBalance, depositStatus, remainingBalanceStatus, serviceMins)
+	if err != nil {
+		logs.Logs(logErr, "Could not create booking confirmation: "+err.Error())
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
 	// redirect page to login or signup - once user is in account they can view their bookings, make payment etc
+	logs.Logs(info, "Redirecting user to login or signup page...")
+	http.RedirectHandler("/", http.StatusSeeOther) // redirect back to homepage (temp)
 }

@@ -10,7 +10,6 @@ const (
 	dbErr = 5
 )
 
-// change this so its NOT global
 var (
-	Db *sql.DB
+	db *sql.DB
 )
