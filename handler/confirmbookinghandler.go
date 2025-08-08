@@ -6,6 +6,7 @@ import (
 
 	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
+	"github.com/Bevs-n-Devs/bookingtemplate/payments"
 )
 
 func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
@@ -54,6 +55,7 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// calculate the remaining cost of service after the deposit is taken
+	remainingBalance := payments.CalculateRemainingBalance(serviceCost, serviceDeposit)
 
 	// create a booking confirmation
 	// redirect page to login or signup - once user is in account they can view their bookings, make payment etc
