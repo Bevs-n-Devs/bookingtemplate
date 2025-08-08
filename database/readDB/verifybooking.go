@@ -39,8 +39,10 @@ func VerifyBookingSQL(username, bookingDate, bookingTime, serviceType, serviceDu
 	return true, nil
 }
 
-// check if the date and time is available - not booked by someone else
-func CheckAvailabilitySQL(bookingDate, bookingTime string) (bool, error) {
+// checks if the booking date and time is available
+//
+// returns: true if the booking date and time is available
+func VerifyBookingAvailabilitySQL(bookingDate, bookingTime string) (bool, error) {
 	if db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get booking confirmation.")
 		return false, nil
@@ -70,8 +72,10 @@ func CheckAvailabilitySQL(bookingDate, bookingTime string) (bool, error) {
 	return false, nil
 }
 
-// check if the service has been cancelled or not
-func CheckCancelledSQL(bookingDate, bookingTime string) (bool, error) {
+// checks if the service has been cancelled via booking date & time
+//
+// returns: true if the service has been cancelled
+func VerifyCancelledBookingSQL(bookingDate, bookingTime string) (bool, error) {
 	if db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get booking confirmation.")
 		return false, nil
@@ -102,5 +106,3 @@ func CheckCancelledSQL(bookingDate, bookingTime string) (bool, error) {
 	logs.Logs(warn, "This service has been cancelled")
 	return true, nil
 }
-
-//
