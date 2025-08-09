@@ -1,7 +1,5 @@
 package readDB
 
-import "database/sql"
-
 const (
 	info  = 1
 	warn  = 2
@@ -9,9 +7,9 @@ const (
 	dbErr = 5
 )
 
-var (
-	db *sql.DB
-)
+// var (
+// 	db *sql.DB
+// )
 
 type GetBookingConfirmation struct {
 	UserName               string `json:"username"`

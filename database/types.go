@@ -11,5 +11,5 @@ const (
 )
 
 var (
-	db *sql.DB
+	Db *sql.DB
 )

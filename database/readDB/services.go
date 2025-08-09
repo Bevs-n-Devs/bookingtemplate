@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"errors"
 
+	"github.com/Bevs-n-Devs/bookingtemplate/database"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 	_ "github.com/lib/pq"
 )
@@ -12,21 +13,21 @@ import (
 
 // service 1, 30 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService1_30minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService1_30minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 1
+	WHERE serviceid = 10
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -34,26 +35,26 @@ func getService1_30minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 1, 45 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService1_45minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService1_45minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 2
+	WHERE serviceid = 11
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -61,26 +62,26 @@ func getService1_45minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 1, 60 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService1_60minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService1_60minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 3
+	WHERE serviceid = 12
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -88,26 +89,26 @@ func getService1_60minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 2, 30 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService2_30minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService2_30minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 4
+	WHERE serviceid = 13
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -115,26 +116,26 @@ func getService2_30minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 2, 45 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService2_45minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService2_45minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 5
+	WHERE serviceid = 14
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -142,26 +143,26 @@ func getService2_45minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 2, 60 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService2_60minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService2_60minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 6
+	WHERE serviceid = 15
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -169,26 +170,26 @@ func getService2_60minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 3, 30 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService3_30minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService3_30minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 7
+	WHERE serviceid = 16
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -196,26 +197,26 @@ func getService3_30minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 3, 45 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService3_45minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService3_45minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 8
+	WHERE serviceid = 17
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -223,26 +224,26 @@ func getService3_45minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 // service 3, 60 minutes
 //
-// returns: serviceType, durationMins, deposit, cost or an error
-func getService3_60minsSQL() (serviceType string, durationMins, deposit, cost int, err error) {
-	if db == nil {
+// returns: serviceType, serviceMins, serviceDeposit, serviceCost or an error
+func getService3_60minsSQL() (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
+	if database.Db == nil {
 		logs.Logs(dbErr, "Database connection is not initialised. Could not get service info.")
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
 	query := `
-	SELECT serviceType, durationMins, deposit, cost
+	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
-	WHERE serviceid = 9
+	WHERE serviceid = 18
 	`
 
-	err = db.QueryRow(query).Scan(
-		&serviceType, &durationMins, &deposit, &cost,
+	err = database.Db.QueryRow(query).Scan(
+		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
 	)
 
 	if err != nil {
@@ -250,11 +251,11 @@ func getService3_60minsSQL() (serviceType string, durationMins, deposit, cost in
 		return "", 0, 0, 0, err
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }
 
 /* determine which service info to return via service name and duration */
-func GetServiceInfo(serviceName, serviceDuration string) (serviceType string, durationMins, deposit, cost int, err error) {
+func GetServiceInfo(serviceName, serviceDuration string) (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
 	switch serviceName {
 	case "service 1":
 		if serviceDuration == "30mins" {
@@ -290,5 +291,5 @@ func GetServiceInfo(serviceName, serviceDuration string) (serviceType string, du
 		}
 	}
 
-	return serviceType, durationMins, deposit, cost, nil
+	return serviceType, serviceMins, serviceDeposit, serviceCost, nil
 }

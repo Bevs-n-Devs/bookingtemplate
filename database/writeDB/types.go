@@ -1,16 +1,14 @@
 package writeDB
 
-import "database/sql"
-
 const (
 	warn  = 2
 	logDB = 4
 	dbErr = 5
 )
 
-var (
-	db *sql.DB
-)
+// var (
+// 	db *sql.DB
+// )
 
 type CreateBookingConfirmation struct {
 	Email       string `json:"email"`
