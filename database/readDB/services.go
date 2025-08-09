@@ -20,6 +20,7 @@ func getService1_30minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 		return "", 0, 0, 0, errors.New("database connection is not initialised")
 	}
 
+	// this query can be storeed in environment variables for later
 	query := `
 	SELECT service_type, service_mins, service_deposit, servcie_cost
 	FROM booking_srvices
@@ -258,35 +259,38 @@ func getService3_60minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 func GetServiceInfo(serviceName, serviceDuration string) (serviceType string, serviceMins, serviceDeposit, serviceCost int, err error) {
 	switch serviceName {
 	case "service 1":
-		if serviceDuration == "30mins" {
+		switch serviceDuration {
+		case "30mins":
 			return getService1_30minsSQL()
-		} else if serviceDuration == "45mins" {
+		case "45mins":
 			return getService1_45minsSQL()
-		} else if serviceDuration == "60mins" {
+		case "60mins":
 			return getService1_60minsSQL()
-		} else {
+		default:
 			return "", 0, 0, 0, errors.New("invalid service duration")
 		}
 
 	case "service 2":
-		if serviceDuration == "30mins" {
+		switch serviceDuration {
+		case "30mins":
 			return getService2_30minsSQL()
-		} else if serviceDuration == "45mins" {
+		case "45mins":
 			return getService2_45minsSQL()
-		} else if serviceDuration == "60mins" {
+		case "60mins":
 			return getService2_60minsSQL()
-		} else {
+		default:
 			return "", 0, 0, 0, errors.New("invalid service duration")
 		}
 
 	case "service 3":
-		if serviceDuration == "30mins" {
+		switch serviceDuration {
+		case "30mins":
 			return getService3_30minsSQL()
-		} else if serviceDuration == "45mins" {
+		case "45mins":
 			return getService3_45minsSQL()
-		} else if serviceDuration == "60mins" {
+		case "60mins":
 			return getService3_60minsSQL()
-		} else {
+		default:
 			return "", 0, 0, 0, errors.New("invalid service duration")
 		}
 	}
