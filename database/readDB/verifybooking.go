@@ -23,6 +23,7 @@ func VerifyBookingAvailabilitySQL(bookingDate, bookingTime string) (bool, error)
 	FROM  booking_confirmation_table
 	WHERE booking_date = $1
 		AND booking_time = $2
+		AND booking_cancelled = 'N'
 	`
 	err := database.Db.QueryRow(query, bookingDate, bookingTime).Scan(
 		&bookingDate, &bookingTime,
