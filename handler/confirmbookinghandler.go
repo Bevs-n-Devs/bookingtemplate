@@ -26,7 +26,7 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Extract form data username, bookingDate, bookingTime, serviceType, serviceDuration
 	userEmail := r.FormValue("username")
-	service := r.FormValue("serviceType")
+	serviceName := r.FormValue("serviceName")
 	serviceDuration := r.FormValue("serviceDuration")
 	bookingDate := r.FormValue("bookingDate")
 	bookingTime := r.FormValue("bookingTime")
@@ -47,7 +47,7 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// get service information by serviceType and serviceDuration
-	serviceType, serviceMins, serviceDeposit, serviceCost, err := readDB.GetServiceInfo(service, serviceDuration)
+	serviceType, serviceMins, serviceDeposit, serviceCost, err := readDB.GetServiceInfo(serviceName, serviceDuration)
 	if err != nil {
 		logs.Logs(logErr, "Could not get service information: "+err.Error())
 		http.Error(w, err.Error(), http.StatusBadRequest)

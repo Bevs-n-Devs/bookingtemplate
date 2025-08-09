@@ -22,9 +22,9 @@ func getService1_30minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 
 	// this query can be storeed in environment variables for later
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 10
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 10
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -49,9 +49,9 @@ func getService1_45minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 11
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 11
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -76,9 +76,9 @@ func getService1_60minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 12
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 12
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -103,9 +103,9 @@ func getService2_30minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 13
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 13
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -130,9 +130,9 @@ func getService2_45minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 14
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 14
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -157,9 +157,9 @@ func getService2_60minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 15
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 15
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -184,9 +184,9 @@ func getService3_30minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 16
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 16
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -211,9 +211,9 @@ func getService3_45minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 17
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 17
 	`
 
 	err = database.Db.QueryRow(query).Scan(
@@ -238,9 +238,9 @@ func getService3_60minsSQL() (serviceType string, serviceMins, serviceDeposit, s
 	}
 
 	query := `
-	SELECT service_type, service_mins, service_deposit, servcie_cost
-	FROM booking_srvices
-	WHERE serviceid = 18
+	SELECT service_type, service_mins, service_deposit, service_cost
+	FROM booking_services
+	WHERE service_id = 18
 	`
 
 	err = database.Db.QueryRow(query).Scan(
