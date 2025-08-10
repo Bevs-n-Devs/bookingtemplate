@@ -7,7 +7,7 @@ import (
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 )
 
-func LoginHandler(w http.ResponseWriter, r *http.Request) {
+func CustomerLoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		logs.Logs(logErr, fmt.Sprintf("ivalid request method: %s. Redirecting back to home page", r.Method))
 		http.Redirect(w, r, "/", http.StatusSeeOther)
@@ -27,6 +27,5 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	// check if the user exists in database - customers table
 
 	logs.Logs(info, fmt.Sprintf("Username: %s, Password: %s", username, userPassword))
-	http.RedirectHandler("/", http.StatusSeeOther) // temporary
-	return
+	http.Redirect(w, r, "/", http.StatusSeeOther) // temporary
 }

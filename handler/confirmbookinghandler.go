@@ -42,7 +42,7 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	// if the booking is not available
 	if !bookingAvailable {
 		logs.Logs(warn, "Booking is not available, redirecting user")
-		http.RedirectHandler("/", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 
@@ -67,5 +67,5 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 
 	// redirect page to login or signup - once user is in account they can view their bookings, make payment etc
 	logs.Logs(info, "Redirecting user to login or signup page...")
-	http.RedirectHandler("/", http.StatusSeeOther) // redirect back to homepage (temp)
+	http.Redirect(w, r, "/login", http.StatusSeeOther) // redirect back to homepage (temp)
 }
