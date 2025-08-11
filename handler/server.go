@@ -23,7 +23,7 @@ func StartServer() {
 
 	http.Handle("/static/", http.StripPrefix("/static/", staticFiles))
 
-	http.HandleFunc("/", HelloWorld)
+	http.HandleFunc("/", HomepageUITemplate)
 	http.HandleFunc("/booking", BookingHandler)
 	http.HandleFunc("/confirmbooking", ConfiormBookingHandler)
 	http.HandleFunc("/customerlogin", CustomerLoginHandler)

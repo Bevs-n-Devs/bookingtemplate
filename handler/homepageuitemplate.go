@@ -7,7 +7,7 @@ import (
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 )
 
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
+func HomepageUITemplate(w http.ResponseWriter, r *http.Request) {
 	err := Templates.ExecuteTemplate(w, "home.html", nil)
 	if err != nil {
 		logs.Logs(logErr, fmt.Sprintf("Unable to load home page: %s", err.Error()))
