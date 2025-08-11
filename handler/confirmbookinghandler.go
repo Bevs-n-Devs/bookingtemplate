@@ -7,7 +7,6 @@ import (
 	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/database/writeDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
-	"github.com/Bevs-n-Devs/bookingtemplate/payments"
 )
 
 func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
@@ -47,18 +46,15 @@ func ConfiormBookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// get service information by serviceType and serviceDuration
-	serviceType, serviceMins, serviceDeposit, serviceCost, err := readDB.GetServiceInfo(serviceName, serviceDuration)
+	serviceType, serviceMins, serviceDeposit, serviceDepositLink, serviceBalance, serviceBalanceLink, _, err := readDB.GetServiceInfo(serviceName, serviceDuration)
 	if err != nil {
 		logs.Logs(logErr, "Could not get service information: "+err.Error())
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	// calculate the remaining cost of service after the deposit is taken
-	remainingBalance := payments.CalculateRemainingBalance(serviceCost, serviceDeposit)
-
 	// create a booking confirmation
-	err = writeDB.CreateBookingConfirmationSQL(userEmail, bookingDate, bookingTime, serviceType, serviceDeposit, remainingBalance, depositStatus, remainingBalanceStatus, serviceMins)
+	err = writeDB.CreateBookingConfirmationSQL(userEmail, bookingDate, bookingTime, serviceType, serviceMins, serviceDeposit, serviceDepositLink, serviceBalance, serviceBalanceLink)
 	if err != nil {
 		logs.Logs(logErr, "Could not create booking confirmation: "+err.Error())
 		http.Error(w, err.Error(), http.StatusBadRequest)
