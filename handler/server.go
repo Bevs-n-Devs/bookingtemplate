@@ -23,10 +23,13 @@ func StartServer() {
 
 	http.Handle("/static/", http.StripPrefix("/static/", staticFiles))
 
+	// define UI templates
 	http.HandleFunc("/", HomepageUITemplate)
 	http.HandleFunc("/booking", BookingHandler)
 	http.HandleFunc("/confirmbooking", ConfiormBookingHandler)
 	http.HandleFunc("/customerlogin", CustomerLoginHandler)
+	
+	// define backend handlers
 	http.HandleFunc("/login", LoginUITemplate)
 	// http.HandleFunc("/createaccount", CreateAccountHandler)
 	// stripe payment page

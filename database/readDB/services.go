@@ -28,7 +28,7 @@ func getService1_30minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -55,7 +55,7 @@ func getService1_45minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -82,7 +82,7 @@ func getService1_60minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -109,7 +109,7 @@ func getService2_30minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -136,7 +136,7 @@ func getService2_45minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -163,7 +163,7 @@ func getService2_60minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -190,7 +190,7 @@ func getService3_30minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -217,7 +217,7 @@ func getService3_45minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
@@ -244,7 +244,7 @@ func getService3_60minsSQL() (serviceType string, serviceMins, serviceDeposit in
 	`
 
 	err = database.Db.QueryRow(query).Scan(
-		&serviceType, &serviceMins, &serviceDeposit, &serviceCost,
+		&serviceType, &serviceMins, &serviceDeposit, &serviceDepositLink, &serviceBalance, &serviceBalanceLink, &serviceCost,
 	)
 
 	if err != nil {
