@@ -77,3 +77,27 @@ func VerifyCancelledBookingSQL(bookingDate, bookingTime string) (bool, error) {
 	logs.Logs(warn, "This service has been cancelled")
 	return true, nil
 }
+
+// checks if user exists
+//
+// returns: true if user exists
+func VerifyUserExistsSQL(username string) (bool, error) {
+	if database.Db == nil {
+		logs.Logs(dbErr, "Database connection is not initialised. Could not get booking confirmation.")
+		return false, nil
+	}
+
+	query := `
+	SELECT username
+	FROM booking_users
+	WHERE username = $1
+	`
+	err := database.Db.QueryRow(query, username).Scan(&username)
+	if err != nil {
+		logs.Logs(dbErr, "Could verify user: "+err.Error())
+		return false, nil
+	}
+
+	logs.Logs(info, "User exists in database")
+	return true, nil
+}
