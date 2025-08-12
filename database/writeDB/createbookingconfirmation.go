@@ -26,10 +26,10 @@ func CreateBookingConfirmationSQL(username, bookingDate, bookingTime, serviceTyp
 		service_type,
 		service_mins,
 		service_deposit,
-		service_deposit_link
+		service_deposit_link,
 		deposit_status,
 		service_balance,
-		service_balance_link
+		service_balance_link,
 		remaining_balance_status,
 		booking_cancelled
 	)
