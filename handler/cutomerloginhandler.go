@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 )
 
@@ -33,10 +34,24 @@ func CustomerLoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// check if the user exists in database - customers table
-	
-	// if user exists in database redirect to user dashboard page
-	// if user does not exist in DB then redirect to create account page
+	exists, err := readDB.VerifyUserExistsSQL(username)
+	if err != nil {
+		logs.Logs(logErr, "Could not verify if user exists in database: "+err.Error())
+		http.Error(w, "Could not verify user existence: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-	logs.Logs(info, fmt.Sprintf("Username: %s, Password: %s, Confirm Password: %s", username, userPassword, confirmPassword))
-	http.Redirect(w, r, "/", http.StatusSeeOther) // temporary
+	// if user exists in database redirect to user dashboard page
+	if exists {
+		logs.Logs(info, "User exists in database. Redirecting to user dashboard")
+		http.Redirect(w, r, "/userdashboard", http.StatusSeeOther)
+		return
+	}
+
+	// if user does not exist in DB then redirect to create account page
+	if !exists {
+		logs.Logs(info, "User does not exist in database. Redirecting to create account page")
+		http.Redirect(w, r, "/createaccount", http.StatusSeeOther)
+		return
+	}
 }
