@@ -48,10 +48,8 @@ func CustomerLoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// if user does not exist in DB then redirect to create account page
+	// if user does not exist then create a new user account
 	if !exists {
-		logs.Logs(info, "User does not exist in database. Redirecting to create account page")
-		http.Redirect(w, r, "/createaccount", http.StatusSeeOther)
-		return
+
 	}
 }
