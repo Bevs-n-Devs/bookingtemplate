@@ -101,3 +101,29 @@ func VerifyUserExistsSQL(username string) (bool, error) {
 	logs.Logs(info, "User exists in database")
 	return true, nil
 }
+
+// check if user exisits by email, password and confirm password
+//
+// retruns: true if user exists
+func VerifyUserExistsByEmailSQL(username, password, confirmPassword string) (bool, error) {
+	if database.Db == nil {
+		logs.Logs(dbErr, "Database connection is not initialised. Could not get booking confirmation.")
+		return false, nil
+	}
+
+	query := `
+	SELECT username
+	FROM booking_users
+	WHERE username = $1
+		AND password = $2
+		AND confirm_password = $3
+	`
+	err := database.Db.QueryRow(query, username, password, confirmPassword).Scan(&username, &password, &confirmPassword)
+	if err != nil {
+		logs.Logs(dbErr, "Could verify user: "+err.Error())
+		return false, nil
+	}
+
+	logs.Logs(info, "User exists in database")
+	return true, nil
+}
