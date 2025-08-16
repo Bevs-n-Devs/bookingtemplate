@@ -31,7 +31,7 @@ func StartServer() {
 
 	// define UI templates
 	http.HandleFunc("/login", LoginUITemplate)
-	// http.HandleFunc("/createaccount", CreateAccountHandler)
+	http.HandleFunc("/createaccount", CreateAccountUITemplate)
 	// stripe payment page
 	// manage booking page
 	// admin login
