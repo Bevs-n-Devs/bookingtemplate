@@ -28,10 +28,12 @@ func StartServer() {
 	http.HandleFunc("/booking", BookingHandler)
 	http.HandleFunc("/confirmbooking", ConfiormBookingHandler)
 	http.HandleFunc("/customerlogin", CustomerLoginHandler)
+	// http.HandleFunc("/verifydashboardlogin", VerifyDashboardLoginHandler)
 
 	// define UI templates
 	http.HandleFunc("/login", LoginUITemplate)
 	http.HandleFunc("/createaccount", CreateAccountUITemplate)
+	http.HandleFunc("/dashboardlogin", DashboardLoginUITemplate)
 	// stripe payment page
 	// manage booking page
 	// admin login

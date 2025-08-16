@@ -44,7 +44,7 @@ func CustomerLoginHandler(w http.ResponseWriter, r *http.Request) {
 	// if user exists in database redirect to user dashboard page
 	if exists {
 		logs.Logs(info, "User exists in database. Redirecting to user dashboard")
-		http.Redirect(w, r, "/userdashboard", http.StatusSeeOther)
+		http.Redirect(w, r, "/dashboardlogin", http.StatusSeeOther)
 		return
 	}
 
