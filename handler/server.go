@@ -28,7 +28,7 @@ func StartServer() {
 	http.HandleFunc("/booking", BookingHandler)
 	http.HandleFunc("/confirmbooking", ConfiormBookingHandler)
 	http.HandleFunc("/customerlogin", CustomerLoginHandler)
-	// http.HandleFunc("/verifydashboardlogin", VerifyDashboardLoginHandler)
+	http.HandleFunc("/verifydashboardlogin", VerifyDashboardLoginHandler)
 
 	// define UI templates
 	http.HandleFunc("/login", LoginUITemplate)
