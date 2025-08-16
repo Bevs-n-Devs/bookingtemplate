@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Bevs-n-Devs/bookingtemplate/database/readDB"
+	"github.com/Bevs-n-Devs/bookingtemplate/database/writeDB"
 	"github.com/Bevs-n-Devs/bookingtemplate/logs"
 )
 
@@ -50,6 +51,16 @@ func CustomerLoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// if user does not exist then create a new user account
 	if !exists {
+		logs.Logs(info, "User does not exist in database. Creating new user account")
+		err = writeDB.CreateUserSQL(username, userPassword, confirmPassword)
+		if err != nil {
+			logs.Logs(logErr, "Could not create new user account: "+err.Error())
+			http.Error(w, "Could not create new user account: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
 
+		logs.Logs(info, "New user account created successfully. Redirecting to dashboard login page")
+		http.Redirect(w, r, "/dashboardlogin", http.StatusSeeOther)
+		return
 	}
 }
